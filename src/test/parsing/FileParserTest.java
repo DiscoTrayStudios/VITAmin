@@ -10,16 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileParserTest {
 
-    File testFile = new File("./ArkansasAssetBuilders/src/test/testDataExamples/exampleData1.csv").getCanonicalFile();
-    File actual = new File("C:\\Users\\astoy\\Documents\\GitHub\\AABDataExamples\\S28011390_TY2020 Paper_Site Production Detail Report - Paper_01_09_2021_112338.csv").getCanonicalFile();
+    File testFile = new File("src/test/testDataExamples/exampleData1.csv").getCanonicalFile();
     FileParser parserObject = new FileParser(testFile);
-    FileParser par = new FileParser(actual);
     FileParserTest() throws IOException {
     }
 
     @Test
     void capitalizeNames() {
-        assertEquals("JOHN", parserObject.getClientProperty(parserObject.getClient("A1234"), "First Name"));
+        assertEquals("JOHN", parserObject.getClientProperty(parserObject.getClient("A1234"), "FIRSTNAME"));
     }
 
     @Test
@@ -46,7 +44,7 @@ class FileParserTest {
 
     @Test
     void parseCSV() {
-        System.out.println(par.data);
+        System.out.println(parserObject.data);
     }
 
     @Test
@@ -62,7 +60,7 @@ class FileParserTest {
 
     @Test
     void reformatSS() {
-        int ssColumn = parserObject.getColumn("Last 4");
+        int ssColumn = parserObject.getColumn("LAST4");
         List<String> line1 = parserObject.removeCommas(parserObject.fileLines.get(2));
         parserObject.reformatSS(line1, ssColumn);
         List<String> line2 = parserObject.removeCommas(parserObject.fileLines.get(3));
