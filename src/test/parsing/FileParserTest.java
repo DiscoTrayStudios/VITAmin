@@ -36,7 +36,7 @@ class FileParserTest {
         List<String> columnNames = Arrays.asList("EFIN","Last 4","Preparer Name","Agency ID","Return Type","Residency",
                                                  "FilingStatus","First Name","Last Name","Ack Code","Refund",
                                                  "Balance Due","State Withholding","State EIC","State Tax Liability",
-                                                 "Created Date Time", "Zip", "State");
+                                                 "Created Date Time", "Zip", "State", "TestBool");
         columnNames.replaceAll(String::toUpperCase);
         columnNames.replaceAll(s -> s.replaceAll("\\s+", ""));
         assertEquals(columnNames, parserObject.getColumnNames());
