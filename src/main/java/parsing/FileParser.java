@@ -117,9 +117,18 @@ public class FileParser{
                            : getColumn("LAST4"));
                 String clientKey = createKey(splitLine);
                 this.data.put(clientKey, new HashMap<>());
+                List<String> yes_no = new ArrayList<>(Arrays.asList("yes", "no"));
                 for (int column = 0; column < splitLine.size(); column++){
                     String columnName = this.columnNames.get(column);
-                    this.data.get(clientKey).put(columnName, splitLine.get(column));
+                    if (yes_no.contains(splitLine.get(column).toLowerCase())){
+                        if (splitLine.get(column).equalsIgnoreCase("yes")){
+                            this.data.get(clientKey).put(columnName, "1");
+                        } else {
+                            this.data.get(clientKey).put(columnName, "0");
+                        }
+                    } else {
+                        this.data.get(clientKey).put(columnName, splitLine.get(column));
+                    }
                 }
             }
         }
