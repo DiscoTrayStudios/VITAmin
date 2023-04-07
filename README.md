@@ -1,4 +1,7 @@
 # VITAmin
+
+<img width="135" alt="vitamin" src="https://user-images.githubusercontent.com/1328659/230636403-2a967e16-dc8b-457a-91d4-59524d2f3ae6.png">
+
 A desktop application for organizing an aggregate of tax return information for users involved in helping and handling 
 tax returns for clients.
 
