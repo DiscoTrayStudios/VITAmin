@@ -4,7 +4,7 @@ public class ReturnData{
 	private StringProperty clientId;
 	private DoubleProperty taxYear;
 	private BooleanProperty federal;
-	private StringProperty acceptedData;
+	private StringProperty acceptedDate;
 	private StringProperty returnType;
 	private StringProperty filingStatus;
 	private DoubleProperty totalIrsExemptions;
@@ -49,7 +49,7 @@ public class ReturnData{
 		this.clientId = new SimpleStringProperty();
 		this.taxYear = new SimpleDoubleProperty();
 		this.federal = new SimpleBooleanProperty();
-		this.acceptedData = new SimpleStringProperty();
+		this.acceptedDate = new SimpleStringProperty();
 		this.returnType = new SimpleStringProperty();
 		this.filingStatus = new SimpleStringProperty();
 		this.totalIrsExemptions = new SimpleDoubleProperty();
@@ -112,11 +112,11 @@ public class ReturnData{
 	public BooleanProperty federalProperty(){return federal;}
 
 
-	public String getAcceptedData(){return acceptedData.get();}
+	public String getAcceptedDate(){return acceptedDate.get();}
 
-	public void setAcceptedData(String acceptedData){this.acceptedData.set(acceptedData);}
+	public void setAcceptedDate(String acceptedDate){this.acceptedDate.set(acceptedDate);}
 
-	public StringProperty acceptedDataProperty(){return acceptedData;}
+	public StringProperty acceptedDateProperty(){return acceptedDate;}
 
 
 	public String getReturnType(){return returnType.get();}

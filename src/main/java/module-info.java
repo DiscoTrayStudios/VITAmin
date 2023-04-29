@@ -1,4 +1,4 @@
-module VITAmin {
+module com.aab.arkansasassetbuilders {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
@@ -8,6 +8,6 @@ module VITAmin {
     requires org.xerial.sqlitejdbc;
 
 
-    opens VITAmin;
-    exports VITAmin;
+    opens com.aab.arkansasassetbuilders;
+    exports com.aab.arkansasassetbuilders;
 }

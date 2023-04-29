@@ -1,17 +1,12 @@
 package parsing;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.*;
 import java.io.*;
-
 public class FileParser{
-
     public List<String> columnNames;
     public Map<String, HashMap<String,String>> data;
     public List<String> fileLines;
-
-
     /**
      * Constructor for FileParser Class.
      * @param clientFile File, file that contains the data in CSV format.
@@ -23,7 +18,6 @@ public class FileParser{
         this.columnNames = getColumnNames();
         parseCSV();
     }
-
     /**
      * Capitalizes the first and last names for each client in the data.
      * @param line A row from the data that contains the information for a single client.
@@ -38,7 +32,6 @@ public class FileParser{
         }
         line.set(getColumn("LASTNAME"), lastNameUpper);
     }
-
     /**
      * Creates a key for the client to be used as an ID in the database.
      * @param line A row from the csv file that contains the information for a single client.
@@ -51,7 +44,6 @@ public class FileParser{
                 : getColumn("LAST4");
         return line.get(lastNameColumn).replaceAll(" ", "") + line.get(ssColumn);
     }
-
     /**
      * Gets index of column based on name of the header of the data.
      * @param columnName Name of the column.
@@ -60,7 +52,6 @@ public class FileParser{
     int getColumn(String columnName){
         return this.columnNames.indexOf(columnName);
     }
-
     /**
      * Gets all header names from the csv file.
      * @return List of names of headers.
@@ -73,7 +64,6 @@ public class FileParser{
         columnNames.replaceAll(String::toUpperCase);
         return columnNames;
     }
-
     /**
      * Get the data associated with a client's ID.
      * @param client Client ID.
@@ -82,7 +72,6 @@ public class FileParser{
     HashMap<String, String> getClient(String client){
         return data.get(client);
     }
-
     /**
      * Gets value of a specified property from a given client.
      * @param clientProperties Hash Map containing properties associated with a client.
@@ -92,8 +81,6 @@ public class FileParser{
     String getClientProperty(HashMap<String, String> clientProperties, String property){
         return clientProperties.get(property);
     }
-
-
     /**
      * Parses a CSV file. Creates a Map containing an ID for a key for each user and a value which is a Hash Map
      * containing the csv headers as keys and values associated with the client for each value.
@@ -113,35 +100,43 @@ public class FileParser{
                             : getColumn("DATEOFBIRTH"));
                 }
                 reformatSS(splitLine, this.columnNames.contains("L4SSN")
-                           ? getColumn("L4SSN")
-                           : getColumn("LAST4"));
+                        ? getColumn("L4SSN")
+                        : getColumn("LAST4"));
                 String clientKey = createKey(splitLine);
                 this.data.put(clientKey, new HashMap<>());
+                List<String> yes_no = new ArrayList<>(Arrays.asList("yes", "no"));
                 for (int column = 0; column < splitLine.size(); column++){
                     String columnName = this.columnNames.get(column);
                     this.data.get(clientKey).put(columnName, splitLine.get(column));
+                    if (yes_no.contains(splitLine.get(column).toLowerCase())){
+                        if (splitLine.get(column).equalsIgnoreCase("yes")){
+                            this.data.get(clientKey).put(columnName, "1");
+                        } else {
+                            this.data.get(clientKey).put(columnName, "0");
+                        }
+                    } else {
+                        this.data.get(clientKey).put(columnName, splitLine.get(column));
+                    }
                 }
             }
         }
     }
-
     /**
      * Reformat the date of birth in the data for each client to add extra zeroes.
      * @param line Line associated with client.
      * @param dobColumn Column that contains the date of birth of the client.
      */
-     void reformatDOB(List<String> line, int dobColumn){
-         if (!line.get(dobColumn).equals("")){
-             String[] dob = line.get(dobColumn).split("/");
-             for (int idx = 0; idx < dob.length - 1; idx++){
-                 if (dob[idx].length() < 2){
-                     dob[idx] = "0" + dob[idx];
-                 }
-             }
-             line.set(dobColumn, String.join("/", dob));
-         }
+    void reformatDOB(List<String> line, int dobColumn){
+        if (!line.get(dobColumn).equals("")){
+            String[] dob = line.get(dobColumn).split("/");
+            for (int idx = 0; idx < dob.length - 1; idx++){
+                if (dob[idx].length() < 2){
+                    dob[idx] = "0" + dob[idx];
+                }
+            }
+            line.set(dobColumn, String.join("/", dob));
+        }
     }
-
     /**
      * Reformats the social security property of a client to get rid of x's or add zeroes if the last four digits of the
      * Social Security number is less than 1000.
@@ -159,7 +154,6 @@ public class FileParser{
         }
         line.set(ssColumn, ss.toString());
     }
-
     /**
      * Removes commas, unnecessary words, and other symbols that would interfere with data entry. Also used to clean
      * up data. Line argument is String due to how file is read and converted to String format.
@@ -180,12 +174,10 @@ public class FileParser{
         }
         return newLine;
     }
-
     /**
      * Remove x characters from Social Security number.
      * @param ss String containing last four digits of Social Security number.
      * @return Reformatted last four digits of Social Security number.
      */
     String removeXChars(String ss){return ss.substring(ss.length() - 4);}
-
 }
