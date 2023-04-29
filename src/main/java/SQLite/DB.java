@@ -1,5 +1,7 @@
 package SQLite;
 
+import org.sqlite.SQLiteException;
+
 import javax.sql.rowset.*;
 import java.sql.*;
 
@@ -11,7 +13,6 @@ import java.sql.*;
 public class DB {
 
     private static Connection connection = null;
-    public static boolean isTest = false;
 
     /**
      * Method for setting up the connection between the program and the database. <br/>
@@ -22,11 +23,8 @@ public class DB {
     public static void connect(){
         try {
             Class.forName("org.sqlite.JDBC");
-            if (isTest){
-                connection = DriverManager.getConnection("jdbc:sqlite:src/test/VITAminTest.db");
-            }else{
-                connection = DriverManager.getConnection("jdbc:sqlite:src/VITAmin.db");
-            }
+            connection = DriverManager.getConnection("jdbc:sqlite:VITAminDB.db");
+
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
@@ -34,16 +32,7 @@ public class DB {
         System.out.println("Opened database successfully");
     }
 
-    public static void connectTest(){
-        try {
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:src/test/VITAminTest.db");
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
-        System.out.println("Opened database successfully.");
-    }
+
 
     /**
      * Method for closing the connection between the program and the database. <br/>
@@ -78,7 +67,6 @@ public class DB {
         try {
             connect();
             //c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
 
             stmt = connection.createStatement();
             System.out.println(query);
@@ -90,9 +78,8 @@ public class DB {
             disconnect();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
+//            System.exit(0);
         }
-        System.out.println("Operation done successfully");
         return crs;
     }
 
@@ -101,8 +88,6 @@ public class DB {
 
         try {
             connect();
-            //c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
 
             stmt = connection.createStatement();
             System.out.println(query);
@@ -111,16 +96,15 @@ public class DB {
             disconnect();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
+//            System.exit(0);
         }
-        System.out.println("Operation done successfully");
     }
 
     /**
      * Method for updating values in the database with a given SQL statement.
      * @param sqlStmt String, statement that is carried out to update the database.
      */
-    public static void update(String sqlStmt){
+    public static void update(String sqlStmt) throws SQLException {
         Statement stmt;
         try{
             connect();
@@ -129,9 +113,12 @@ public class DB {
 
             stmt.close();
             disconnect();
-        }catch(Exception e){
+        }catch(SQLException e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
+//            System.exit(0);
+            throw e;
+        }catch(Exception e){
+            throw e;
         }
     }
 
@@ -145,6 +132,5 @@ public class DB {
 
     public static void main(String args[]) throws SQLException {
         connect();
-        System.out.println(dbExists());
     }
 }

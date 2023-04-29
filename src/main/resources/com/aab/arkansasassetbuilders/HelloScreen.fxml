@@ -1,0 +1,2126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aab.arkansasassetbuilders.HelloController">
+   <children>
+      <BorderPane fx:id="filterMenu" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <bottom>
+            <Button fx:id="filterButton" mnemonicParsing="false" onAction="#filter" text="Filter" BorderPane.alignment="TOP_RIGHT">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </BorderPane.margin></Button>
+         </bottom>
+         <center>
+            <ScrollPane BorderPane.alignment="CENTER">
+               <content>
+                  <HBox>
+                     <children>
+                        <VBox minWidth="-Infinity" HBox.hgrow="NEVER">
+                           <children>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#taxYearBoxAction" text="TAX YEAR:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#federalBoxAction" text="FEDERAL:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#sidnBoxAction" text="SIDN:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#l4SSNBoxAction" text="L4SSN:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#firstNameBoxAction" text="FIRST NAME:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#lastNameBoxAction" text="LAST NAME:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#doBBoxAction" text="DOB:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#cityBoxAction" text="CITY:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#stateBoxAction" text="STATE:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#zipBoxAction" text="ZIP:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#acceptedDateBoxAction" text="ACCEPTED DATE:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#returnTypeBoxAction" text="RETURN TYPE:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#filingStatusBoxAction" text="FILING STATUS:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#totalIrsExemptionsBoxAction" text="TOTAL IRS EXEMPTIONS:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#refundBoxAction" text="REFUND:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#paperStateBoxAction" text="PAPER STATE:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#paperFedBoxAction" text="PAPER FED:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#requestingDdBoxAction" text="REQUESTING DD:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#primarySecondary60PlusBoxAction" text="PRIMARY SECONDARY 60 PLUS:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#agiBoxAction" text="AGI:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#createdDateBoxAction" text="CREATED DATE:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#addctcBoxAction" text="ADDCTC:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#poundSavingsBondsBoxAction" text="POUND SAVINGS BONDS:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#savingsBondsBoxAction" text="SAVINGS BONDS:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#eicBoxAction" text="EIC:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#childTaxCreditBoxAction" text="CHILD TAX CREDIT:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#educationTaxCreditBoxAction" text="EDUCATION TAX CREDIT:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#elderlyCreditBoxAction" text="ELDERLY CREDIT:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#totalRespPaymentBoxAction" text="TOTAL RESP PAYMENT:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#totalAdvptcRepaymentBoxAction" text="TOTAL ADVPTC REPAYMENT:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#averageAdvptcPaymentBoxAction" text="AVERAGE ADVPTC PAYMENT:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#totalPtcBoxAction" text="TOTAL PTC:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#balanceDueBoxAction" text="BALANCE DUE:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#itinBoxAction" text="ITIN:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#exemption7BoxAction" text="EXEMPTION 7:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#fullYearCoverageBoxAction" text="FULL YEAR COVERAGE:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#form8888BoxAction" text="FORM8888:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleABoxAction" text="SCHEDULE A:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleBBoxAction" text="SCHEDULE B:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleCBoxAction" text="SCHEDULE C:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleCEzBoxAction" text="SCHEDULE C EZ:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleDBoxAction" text="SCHEDULE D:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleEBoxAction" text="SCHEDULE E:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleFBoxAction" text="SCHEDULE F:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleHBoxAction" text="SCHEDULE H:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleRBoxAction" text="SCHEDULE R:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleSetPBoxAction" text="SCHEDULE SET P:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#scheduleSesPBoxAction" text="SCHEDULE SES P:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#agencyIdBoxAction" text="AGENCY ID:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#residencyBoxAction" text="RESIDENCY:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#stateWithholdingBoxAction" text="STATE WITHHOLDING:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#stateTaxLiabilityBoxAction" text="STATE TAX LIABILITY:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#efinBoxAction" text="EFIN:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#aAmountTaxpayerIsPlanningToSaveBoxAction" text="A AMOUNT TAXPAYER IS PLANNING TO SAVE:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#consentToDiscloseTaxReturnBoxAction" text="CONSENT TO DISCLOSE TAX RETURN:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#consentToDiscloseTaxpayerDBoxAction" text="CONSENT TO DISCLOSE TAXPAYER D:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#consentToUseTaxpayerDataBoxAction" text="CONSENT TO USE TAXPAYER DATA:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#consentToDiscloseTaxReturn1BoxAction" text="CONSENT TO DISCLOSE TAX RETURN 1:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#consentToDiscloseTaxReturn2BoxAction" text="CONSENT TO DISCLOSE TAX RETURN 2:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#consentToDiscloseTaxReturn3BoxAction" text="CONSENT TO DISCLOSE TAX RETURN 3:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#consentToDiscloseTaxReturn4BoxAction" text="CONSENT TO DISCLOSE TAX RETURN 4:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions1BoxAction" text="QUESTIONS 1:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions2BoxAction" text="QUESTIONS 2:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions3BoxAction" text="QUESTIONS 3:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions4BoxAction" text="QUESTIONS 4:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions5BoxAction" text="QUESTIONS 5:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions6BoxAction" text="QUESTIONS 6:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions7BoxAction" text="QUESTIONS 7:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions8BoxAction" text="QUESTIONS 8:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questions9BoxAction" text="QUESTIONS 9:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionABoxAction" text="QUESTION A:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionBBoxAction" text="QUESTION B:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionCBoxAction" text="QUESTION C:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionDBoxAction" text="QUESTION D:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionEBoxAction" text="QUESTION E:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionFBoxAction" text="QUESTION F:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionGBoxAction" text="QUESTION G:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionHBoxAction" text="QUESTION H:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionIBoxAction" text="QUESTION I:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionJBoxAction" text="QUESTION J:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#questionKBoxAction" text="QUESTION K:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#persons5AndUnderBoxAction" text="PERSONS 5 AND UNDER:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#personsAge6To18BoxAction" text="PERSONS AGE 6 TO 18:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <CheckBox minWidth="-Infinity" mnemonicParsing="false" onAction="#personsAge65PlusBoxAction" text="PERSONS AGE 65 PLUS:" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox fx:id="filterBox" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <ChoiceBox fx:id="taxYear" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ChoiceBox>
+                                    <Label text="to" />
+                                    <ChoiceBox fx:id="taxYear2" disable="true" prefWidth="150.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="federal" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="sidn" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="l4SSN" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="firstName" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="lastName" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <DatePicker fx:id="doB" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </DatePicker>
+                                    <Label text="to" />
+                                    <DatePicker fx:id="doB2" disable="true" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="city" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="state" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="zip" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <DatePicker fx:id="acceptedDate" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </DatePicker>
+                                    <Label text="to" />
+                                    <DatePicker fx:id="acceptedDate2" disable="true" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="returnType" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="filingStatus" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="totalIrsExemptions" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="refund" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="paperState" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="paperFed" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="requestingDd" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="primarySecondary60Plus" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="agi" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <DatePicker fx:id="createdDate" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </DatePicker>
+                                    <Label text="to" />
+                                    <DatePicker fx:id="createdDate2" disable="true" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="addctc" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="poundSavingsBonds" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="savingsBonds" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="eic" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="childTaxCredit" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="educationTaxCredit" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="elderlyCredit" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="totalRespPayment" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="totalAdvptcRepayment" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="averageAdvptcPayment" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="totalPtc" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="balanceDue" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="itin" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="exemption7" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="fullYearCoverage" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="form8888" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleA" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleB" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleC" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleCEz" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleD" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleE" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleF" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleH" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleR" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleSetP" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="scheduleSesP" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="agencyId" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="residency" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="stateWithholding" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="stateTaxLiability" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="efin" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="aAmountTaxpayerIsPlanningToSave" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="consentToDiscloseTaxReturn" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="consentToDiscloseTaxpayerD" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="consentToUseTaxpayerData" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="consentToDiscloseTaxReturn1" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="consentToDiscloseTaxReturn2" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="consentToDiscloseTaxReturn3" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="consentToDiscloseTaxReturn4" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions1" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions2" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions3" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions4" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions5" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions6" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions7" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions8" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questions9" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionA" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionB" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionC" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionD" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionE" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionF" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionG" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionH" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionI" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionJ" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="questionK" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="persons5AndUnder" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="personsAge6To18" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="personsAge65Plus" disable="true" prefWidth="149.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>		<BorderPane fx:id="resultsView" prefHeight="200.0" prefWidth="200.0">
+      <bottom>
+         <HBox spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
+            <children>
+               <Pane prefHeight="0.0" prefWidth="535.0" HBox.hgrow="ALWAYS" />
+               <Button fx:id="openFilter" alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#openFilterMenu" text="Filter" />
+               <Button mnemonicParsing="false" onAction="#export" text="Export" />
+               <Button fx:id="backToHomeButton" mnemonicParsing="false" onAction="#switchToUpload" text="Back to Home" />
+            </children>
+            <BorderPane.margin>
+               <Insets bottom="20.0" right="50.0" />
+            </BorderPane.margin>
+         </HBox>
+      </bottom>
+      <center>
+         <TableView fx:id="resultsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+               <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" visible="false" />
+               <TableColumn fx:id="taxYearColumn" prefWidth="75.0" text="TAX YEAR" visible="false" />
+               <TableColumn fx:id="federalColumn" prefWidth="75.0" text="FEDERAL" visible="false" />
+               <TableColumn fx:id="sidnColumn" prefWidth="75.0" text="SIDN" visible="false" />
+               <TableColumn fx:id="l4SSNColumn" prefWidth="75.0" text="L4SSN" visible="false" />
+               <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="FIRST NAME" visible="false" />
+               <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="LAST NAME" visible="false" />
+               <TableColumn fx:id="doBColumn" prefWidth="75.0" text="DOB" visible="false" />
+               <TableColumn fx:id="cityColumn" prefWidth="75.0" text="CITY" visible="false" />
+               <TableColumn fx:id="stateColumn" prefWidth="75.0" text="STATE" visible="false" />
+               <TableColumn fx:id="zipColumn" prefWidth="75.0" text="ZIP" visible="false" />
+               <TableColumn fx:id="acceptedDateColumn" prefWidth="75.0" text="ACCEPTED DATE" visible="false" />
+               <TableColumn fx:id="returnTypeColumn" prefWidth="75.0" text="RETURN TYPE" visible="false" />
+               <TableColumn fx:id="filingStatusColumn" prefWidth="75.0" text="FILING STATUS" visible="false" />
+               <TableColumn fx:id="totalIrsExemptionsColumn" prefWidth="75.0" text="TOTAL IRS EXEMPTIONS" visible="false" />
+               <TableColumn fx:id="refundColumn" prefWidth="75.0" text="REFUND" visible="false" />
+               <TableColumn fx:id="paperStateColumn" prefWidth="75.0" text="PAPER STATE" visible="false" />
+               <TableColumn fx:id="paperFedColumn" prefWidth="75.0" text="PAPER FED" visible="false" />
+               <TableColumn fx:id="requestingDdColumn" prefWidth="75.0" text="REQUESTING DD" visible="false" />
+               <TableColumn fx:id="primarySecondary60PlusColumn" prefWidth="75.0" text="PRIMARY SECONDARY 60 PLUS" visible="false" />
+               <TableColumn fx:id="agiColumn" prefWidth="75.0" text="AGI" visible="false" />
+               <TableColumn fx:id="createdDateColumn" prefWidth="75.0" text="CREATED DATE" visible="false" />
+               <TableColumn fx:id="addctcColumn" prefWidth="75.0" text="ADDCTC" visible="false" />
+               <TableColumn fx:id="poundSavingsBondsColumn" prefWidth="75.0" text="POUND SAVINGS BONDS" visible="false" />
+               <TableColumn fx:id="savingsBondsColumn" prefWidth="75.0" text="SAVINGS BONDS" visible="false" />
+               <TableColumn fx:id="eicColumn" prefWidth="75.0" text="EIC" visible="false" />
+               <TableColumn fx:id="childTaxCreditColumn" prefWidth="75.0" text="CHILD TAX CREDIT" visible="false" />
+               <TableColumn fx:id="educationTaxCreditColumn" prefWidth="75.0" text="EDUCATION TAX CREDIT" visible="false" />
+               <TableColumn fx:id="elderlyCreditColumn" prefWidth="75.0" text="ELDERLY CREDIT" visible="false" />
+               <TableColumn fx:id="totalRespPaymentColumn" prefWidth="75.0" text="TOTAL RESP PAYMENT" visible="false" />
+               <TableColumn fx:id="totalAdvptcRepaymentColumn" prefWidth="75.0" text="TOTAL ADVPTC REPAYMENT" visible="false" />
+               <TableColumn fx:id="averageAdvptcPaymentColumn" prefWidth="75.0" text="AVERAGE ADVPTC PAYMENT" visible="false" />
+               <TableColumn fx:id="totalPtcColumn" prefWidth="75.0" text="TOTAL PTC" visible="false" />
+               <TableColumn fx:id="balanceDueColumn" prefWidth="75.0" text="BALANCE DUE" visible="false" />
+               <TableColumn fx:id="itinColumn" prefWidth="75.0" text="ITIN" visible="false" />
+               <TableColumn fx:id="exemption7Column" prefWidth="75.0" text="EXEMPTION 7" visible="false" />
+               <TableColumn fx:id="fullYearCoverageColumn" prefWidth="75.0" text="FULL YEAR COVERAGE" visible="false" />
+               <TableColumn fx:id="form8888Column" prefWidth="75.0" text="FORM8888" visible="false" />
+               <TableColumn fx:id="scheduleAColumn" prefWidth="75.0" text="SCHEDULE A" visible="false" />
+               <TableColumn fx:id="scheduleBColumn" prefWidth="75.0" text="SCHEDULE B" visible="false" />
+               <TableColumn fx:id="scheduleCColumn" prefWidth="75.0" text="SCHEDULE C" visible="false" />
+               <TableColumn fx:id="scheduleCEzColumn" prefWidth="75.0" text="SCHEDULE C EZ" visible="false" />
+               <TableColumn fx:id="scheduleDColumn" prefWidth="75.0" text="SCHEDULE D" visible="false" />
+               <TableColumn fx:id="scheduleEColumn" prefWidth="75.0" text="SCHEDULE E" visible="false" />
+               <TableColumn fx:id="scheduleFColumn" prefWidth="75.0" text="SCHEDULE F" visible="false" />
+               <TableColumn fx:id="scheduleHColumn" prefWidth="75.0" text="SCHEDULE H" visible="false" />
+               <TableColumn fx:id="scheduleRColumn" prefWidth="75.0" text="SCHEDULE R" visible="false" />
+               <TableColumn fx:id="scheduleSetPColumn" prefWidth="75.0" text="SCHEDULE SET P" visible="false" />
+               <TableColumn fx:id="scheduleSesPColumn" prefWidth="75.0" text="SCHEDULE SES P" visible="false" />
+               <TableColumn fx:id="agencyIdColumn" prefWidth="75.0" text="AGENCY ID" visible="false" />
+               <TableColumn fx:id="residencyColumn" prefWidth="75.0" text="RESIDENCY" visible="false" />
+               <TableColumn fx:id="stateWithholdingColumn" prefWidth="75.0" text="STATE WITHHOLDING" visible="false" />
+               <TableColumn fx:id="stateTaxLiabilityColumn" prefWidth="75.0" text="STATE TAX LIABILITY" visible="false" />
+               <TableColumn fx:id="efinColumn" prefWidth="75.0" text="EFIN" visible="false" />
+               <TableColumn fx:id="aAmountTaxpayerIsPlanningToSaveColumn" prefWidth="75.0" text="A AMOUNT TAXPAYER IS PLANNING TO SAVE" visible="false" />
+               <TableColumn fx:id="consentToDiscloseTaxReturnColumn" prefWidth="75.0" text="CONSENT TO DISCLOSE TAX RETURN" visible="false" />
+               <TableColumn fx:id="consentToDiscloseTaxpayerDColumn" prefWidth="75.0" text="CONSENT TO DISCLOSE TAXPAYER D" visible="false" />
+               <TableColumn fx:id="consentToUseTaxpayerDataColumn" prefWidth="75.0" text="CONSENT TO USE TAXPAYER DATA" visible="false" />
+               <TableColumn fx:id="consentToDiscloseTaxReturn1Column" prefWidth="75.0" text="CONSENT TO DISCLOSE TAX RETURN 1" visible="false" />
+               <TableColumn fx:id="consentToDiscloseTaxReturn2Column" prefWidth="75.0" text="CONSENT TO DISCLOSE TAX RETURN 2" visible="false" />
+               <TableColumn fx:id="consentToDiscloseTaxReturn3Column" prefWidth="75.0" text="CONSENT TO DISCLOSE TAX RETURN 3" visible="false" />
+               <TableColumn fx:id="consentToDiscloseTaxReturn4Column" prefWidth="75.0" text="CONSENT TO DISCLOSE TAX RETURN 4" visible="false" />
+               <TableColumn fx:id="questions1Column" prefWidth="75.0" text="QUESTIONS 1" visible="false" />
+               <TableColumn fx:id="questions2Column" prefWidth="75.0" text="QUESTIONS 2" visible="false" />
+               <TableColumn fx:id="questions3Column" prefWidth="75.0" text="QUESTIONS 3" visible="false" />
+               <TableColumn fx:id="questions4Column" prefWidth="75.0" text="QUESTIONS 4" visible="false" />
+               <TableColumn fx:id="questions5Column" prefWidth="75.0" text="QUESTIONS 5" visible="false" />
+               <TableColumn fx:id="questions6Column" prefWidth="75.0" text="QUESTIONS 6" visible="false" />
+               <TableColumn fx:id="questions7Column" prefWidth="75.0" text="QUESTIONS 7" visible="false" />
+               <TableColumn fx:id="questions8Column" prefWidth="75.0" text="QUESTIONS 8" visible="false" />
+               <TableColumn fx:id="questions9Column" prefWidth="75.0" text="QUESTIONS 9" visible="false" />
+               <TableColumn fx:id="questionAColumn" prefWidth="75.0" text="QUESTION A" visible="false" />
+               <TableColumn fx:id="questionBColumn" prefWidth="75.0" text="QUESTION B" visible="false" />
+               <TableColumn fx:id="questionCColumn" prefWidth="75.0" text="QUESTION C" visible="false" />
+               <TableColumn fx:id="questionDColumn" prefWidth="75.0" text="QUESTION D" visible="false" />
+               <TableColumn fx:id="questionEColumn" prefWidth="75.0" text="QUESTION E" visible="false" />
+               <TableColumn fx:id="questionFColumn" prefWidth="75.0" text="QUESTION F" visible="false" />
+               <TableColumn fx:id="questionGColumn" prefWidth="75.0" text="QUESTION G" visible="false" />
+               <TableColumn fx:id="questionHColumn" prefWidth="75.0" text="QUESTION H" visible="false" />
+               <TableColumn fx:id="questionIColumn" prefWidth="75.0" text="QUESTION I" visible="false" />
+               <TableColumn fx:id="questionJColumn" prefWidth="75.0" text="QUESTION J" visible="false" />
+               <TableColumn fx:id="questionKColumn" prefWidth="75.0" text="QUESTION K" visible="false" />
+               <TableColumn fx:id="persons5AndUnderColumn" prefWidth="75.0" text="PERSONS 5 AND UNDER" visible="false" />
+               <TableColumn fx:id="personsAge6To18Column" prefWidth="75.0" text="PERSONS AGE 6 TO 18" visible="false" />
+               <TableColumn fx:id="personsAge65PlusColumn" prefWidth="75.0" text="PERSONS AGE 65 PLUS" visible="false" />
+            </columns>
+            <BorderPane.margin>
+               <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+            </BorderPane.margin>
+         </TableView>
+      </center>
+         <top>
+            <HBox spacing="10.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label minWidth="-Infinity" text="Total Records:" />
+                        <TextField fx:id="totalRecords" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="refundBox" prefHeight="100.0" prefWidth="200.0" spacing="10.0" visible="false">
+                     <children>
+                        <Label minHeight="-Infinity" minWidth="-Infinity" text="Total Refunds:" />
+                        <TextField fx:id="totalRefunds" editable="false" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </top>
+   </BorderPane>
+   </children>
+</StackPane>

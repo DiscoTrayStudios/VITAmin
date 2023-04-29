@@ -104,11 +104,11 @@ public class DataObject{
 	public BooleanProperty federalProperty(){return returnData.federalProperty();}
 
 
-	public String getAcceptedData(){return returnData.getAcceptedData();}
+	public String getAcceptedDate(){return returnData.getAcceptedDate();}
 
-	public void setAcceptedData(String acceptedData){returnData.setAcceptedData(acceptedData);}
+	public void setAcceptedDate(String acceptedDate){returnData.setAcceptedDate(acceptedDate);}
 
-	public StringProperty acceptedDataProperty(){return returnData.acceptedDataProperty();}
+	public StringProperty acceptedDateProperty(){return returnData.acceptedDateProperty();}
 
 
 	public String getReturnType(){return returnData.getReturnType();}

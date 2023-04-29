@@ -5,24 +5,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class DataBase {
 
-    /*
-     *Initialization Functions
+    /**
+     * Called when the program is started to make a database if one does not exist
+     * @throws SQLException
      */
 
     public static void initializeDB() throws SQLException {
         if(!DB.dbExists()){
             String Table1 = "CREATE TABLE CLIENT(ID text NOT NULL , SIDN text, L4SSN text, FIRSTNAME text, LASTNAME text, DOB text, EFIN text, PRIMARY KEY(ID));";
-            String Table2 = "CREATE TABLE DEMOGRAPHIC(CLIENTID text NOT NULL , TAXYEAR num NOT NULL , CITY text, STATE text, ZIP text, PRIMARYSECONDARY60PLUS num, RESIDENCY text, PRIMARY KEY(CLIENTID, TAXYEAR), FOREIGN KEY(CLIENTID) REFERENCES CLIENT(ID), FOREIGN KEY(TAXYEAR) REFERENCES TAXYEAR(TAXYEAR));";
-            String Table3 = "CREATE TABLE RETURNDATA(CLIENTID text NOT NULL , TAXYEAR num NOT NULL , FEDERAL bool NOT NULL , ACCEPTEDDATA text, RETURNTYPE text, FILINGSTATUS text, TOTALIRSEXEMPTIONS num, REFUND num, PAPERSTATE bool, PAPERFED bool, REQUESTINGDD bool, AGI num, CREATEDDATE text, ADDCTC num, POUNDSAVINGSBONDS text, SAVINGSBONDS text, EIC num, CHILDTAXCREDIT num, EDUCATIONTAXCREDIT num, ELDERLYCREDIT num, TOTALRESPPAYMENT num, TOTALADVPTCREPAYMENT num, AVERAGEADVPTCPAYMENT num, TOTALPTC num, BALANCEDUE num, ITIN bool, EXEMPTION7 bool, FULLYEARCOVERAGE bool, FORM8888 bool, SCHEDULEA bool, SCHEDULEB bool, SCHEDULEC bool, SCHEDULECEZ bool, SCHEDULED bool, SCHEDULEE bool, SCHEDULEF bool, SCHEDULEH bool, SCHEDULER bool, SCHEDULESETP bool, SCHEDULESESP bool, AGENCYID text, STATEWITHHOLDING num, STATETAXLIABILITY num, AAMOUNTTAXPAYERISPLANNINGTOSAVE num, PRIMARY KEY(CLIENTID, TAXYEAR, FEDERAL), FOREIGN KEY(CLIENTID) REFERENCES CLIENT(ID), FOREIGN KEY(TAXYEAR) REFERENCES TAXYEAR(TAXYEAR));";
-            String Table4 = "CREATE TABLE QUESTION(CLIENTID text NOT NULL , TAXYEAR num NOT NULL , CONSENTTODISCLOSETAXRETURN bool, CONSENTTODISCLOSETAXPAYERD bool, CONSENTTOUSETAXPAYERDATA bool, CONSENTTODISCLOSETAXRETURN1 bool, CONSENTTODISCLOSETAXRETURN2 bool, CONSENTTODISCLOSETAXRETURN3 bool, CONSENTTODISCLOSETAXRETURN4 bool, QUESTIONS1 text, QUESTIONS2 text, QUESTIONS3 text, QUESTIONS4 text, QUESTIONS5 text, QUESTIONS6 text, QUESTIONS7 text, QUESTIONS8 text, QUESTIONS9 text, QUESTIONA text, QUESTIONB text, QUESTIONC text, QUESTIOND text, QUESTIONE text, QUESTIONF text, QUESTIONG text, QUESTIONH text, QUESTIONI text, QUESTIONJ text, QUESTIONK text, PERSONS5ANDUNDER num, PERSONSAGE6TO18 num, PERSONSAGE65PLUS num, PRIMARY KEY(CLIENTID, TAXYEAR), FOREIGN KEY(CLIENTID) REFERENCES CLIENT(ID), FOREIGN KEY(TAXYEAR) REFERENCES TAXYEAR(TAXYEAR));";
-            String Table5 = "CREATE TABLE TAXYEAR(TAXYEAR num NOT NULL , PRIMARY KEY(TAXYEAR));";
+            String Table2 = "CREATE TABLE DEMOGRAPHIC(CLIENTID text NOT NULL , TAXYEAR numeric NOT NULL , CITY text, STATE text, ZIP text, PRIMARYSECONDARY60PLUS numeric, RESIDENCY text, PRIMARY KEY(CLIENTID, TAXYEAR), FOREIGN KEY(CLIENTID) REFERENCES CLIENT(ID), FOREIGN KEY(TAXYEAR) REFERENCES TAXYEAR(TAXYEAR));";
+            String Table3 = "CREATE TABLE RETURNDATA(CLIENTID text NOT NULL , TAXYEAR numeric NOT NULL , FEDERAL numeric NOT NULL , ACCEPTEDDATE text, RETURNTYPE text, FILINGSTATUS text, TOTALIRSEXEMPTIONS numeric, REFUND numeric, PAPERSTATE numeric, PAPERFED numeric, REQUESTINGDD numeric, AGI numeric, CREATEDDATE text, ADDCTC numeric, POUNDSAVINGSBONDS text, SAVINGSBONDS text, EIC numeric, CHILDTAXCREDIT numeric, EDUCATIONTAXCREDIT numeric, ELDERLYCREDIT numeric, TOTALRESPPAYMENT numeric, TOTALADVPTCREPAYMENT numeric, AVERAGEADVPTCPAYMENT numeric, TOTALPTC numeric, BALANCEDUE numeric, ITIN numeric, EXEMPTION7 numeric, FULLYEARCOVERAGE numeric, FORM8888 numeric, SCHEDULEA numeric, SCHEDULEB numeric, SCHEDULEC numeric, SCHEDULECEZ numeric, SCHEDULED numeric, SCHEDULEE numeric, SCHEDULEF numeric, SCHEDULEH numeric, SCHEDULER numeric, SCHEDULESETP numeric, SCHEDULESESP numeric, AGENCYID text, STATEWITHHOLDING numeric, STATETAXLIABILITY numeric, AAMOUNTTAXPAYERISPLANNINGTOSAVE numeric, PRIMARY KEY(CLIENTID, TAXYEAR, FEDERAL), FOREIGN KEY(CLIENTID) REFERENCES CLIENT(ID), FOREIGN KEY(TAXYEAR) REFERENCES TAXYEAR(TAXYEAR));";
+            String Table4 = "CREATE TABLE QUESTION(CLIENTID text NOT NULL , TAXYEAR numeric NOT NULL , CONSENTTODISCLOSETAXRETURN numeric, CONSENTTODISCLOSETAXPAYERD numeric, CONSENTTOUSETAXPAYERDATA numeric, CONSENTTODISCLOSETAXRETURN1 numeric, CONSENTTODISCLOSETAXRETURN2 numeric, CONSENTTODISCLOSETAXRETURN3 numeric, CONSENTTODISCLOSETAXRETURN4 numeric, QUESTIONS1 text, QUESTIONS2 text, QUESTIONS3 text, QUESTIONS4 text, QUESTIONS5 text, QUESTIONS6 text, QUESTIONS7 text, QUESTIONS8 text, QUESTIONS9 text, QUESTIONA text, QUESTIONB text, QUESTIONC text, QUESTIOND text, QUESTIONE text, QUESTIONF text, QUESTIONG text, QUESTIONH text, QUESTIONI text, QUESTIONJ text, QUESTIONK text, PERSONS5ANDUNDER numeric, PERSONSAGE6TO18 numeric, PERSONSAGE65PLUS numeric, PRIMARY KEY(CLIENTID, TAXYEAR), FOREIGN KEY(CLIENTID) REFERENCES CLIENT(ID), FOREIGN KEY(TAXYEAR) REFERENCES TAXYEAR(TAXYEAR));";
+            String Table5 = "CREATE TABLE TAXYEAR(TAXYEAR numeric NOT NULL , PRIMARY KEY(TAXYEAR));";
+
             DB.executeCreateQuery(Table1);
             DB.executeCreateQuery(Table2);
             DB.executeCreateQuery(Table3);
@@ -254,16 +256,13 @@ public class DataBase {
      * ==================================================================================
      */
 
-    static String[] demoFields = new String[] {
-            "TAXYEAR",
+    static HashSet<String>demoFields = new HashSet<>(Arrays.asList(
             "CITY",
             "STATE",
             "ZIP",
             "RESIDENCY",
             "PRIMARYORSECONDARY60"
-    };
-
-    static HashMap<String, String> demoFieldMap = new HashMap<>();
+    ));
 
     /**
      * Insert a demographic into the DEMOGRAPHIC table of the database.
@@ -276,8 +275,9 @@ public class DataBase {
     public static void insertDemographic(HashMap<String, String> clientData, String clientID){
         // Grab demographic data for new or existing demographic in the demographic table.
         // Not guaranteed that each field is in clientData, so must instantiate variables.
+        HashMap<String, String> demoFieldMap = new HashMap<>();
         for (String field: clientData.keySet()){
-            if (Arrays.asList(demoFields).contains(field)){
+            if (demoFields.contains(field)){
                 if (field.equals("PRIMARYORSECONDARY60")){
                     demoFieldMap.put("PRIMARYSECONDARY60PLUS", clientData.get(field));
                 } else {
@@ -298,6 +298,7 @@ public class DataBase {
                 StringBuilder insertStmt = new StringBuilder("INSERT INTO DEMOGRAPHIC (CLIENTID");
                 StringBuilder intoStmt = new StringBuilder("VALUES ('" + clientID + "'");
                 if (!demoFieldMap.isEmpty()) {
+                    demoFieldMap.put("TAXYEAR", clientData.get("TAXYEAR"));
                     for (String field : demoFieldMap.keySet()) {
                         if (!demoFieldMap.get(field).equals("")) {
                             insertStmt.append(", ").append(field);
@@ -341,6 +342,7 @@ public class DataBase {
             DB.update(updateStmt);
         }catch(Exception e){
             System.out.print("Error occurred while UPDATE Operation: " + e);
+            throw e;
         }
     }
 
@@ -351,7 +353,7 @@ public class DataBase {
      * ==================================================================================
      */
 
-    static String[] questionFields = new String[] {
+    static HashSet<String> questionFields = new HashSet<>(Arrays.asList(
             "CONSENTTODISCLOSETAXRETURN",
             "CONSENTTODISCLOSETAXPAYERD",
             "CONSENTTOUSETAXPAYERDATA",
@@ -382,7 +384,7 @@ public class DataBase {
             "PERSONS5ANDUNDER",
             "PERSONSAGE6TO18",
             "PERSONSAGE65PLUS"
-    };
+            ));
 
     static String[] actualQuestions = new String[] {
             "1WOULDYOUSAYYOUCANCARRY",
@@ -410,7 +412,6 @@ public class DataBase {
             "PERSONSONTAXRETURNAGE65"
     };
 
-    static HashMap<String, String> questionFieldMap = new HashMap<>();
 
     private static String formatQuestions(String unformattedString){
         if (Character.isDigit(unformattedString.charAt(0))){
@@ -436,7 +437,7 @@ public class DataBase {
         }
     }
 
-    public static void insertQuestion(HashMap<String, String> clientData, String clientID){
+    public static void insertQuestion(HashMap<String, String> clientData, String clientID) throws Exception{
         //For each key in the field map
         //If the key matches one of the fields that we have instantiated, put it into our field map.
         //However, if the field is one of the poorly formatted questions, reformat the question name
@@ -444,9 +445,9 @@ public class DataBase {
         //value of the question into the database.
         //If the field is a consent to disclose tax return, since there are multiple of the same names,
         //need to assign it to the four different fields reserved for it.
-
+        HashMap<String, String> questionFieldMap = new HashMap<>();
         for (String field: clientData.keySet()){
-            if (Arrays.asList(questionFields).contains(field)){
+            if (questionFields.contains(field)){
                 questionFieldMap.put(field, clientData.get(field));
             }
             //Finding exact match of String occurrence in an Array:
@@ -489,6 +490,7 @@ public class DataBase {
                 StringBuilder insertStmt = new StringBuilder("INSERT INTO QUESTION (CLIENTID");
                 StringBuilder intoStmt = new StringBuilder("VALUES ('" + clientID + "'");
                 if (!questionFieldMap.isEmpty()) {
+                    questionFieldMap.put("TAXYEAR", clientData.get("TAXYEAR"));
                     for (String field : questionFieldMap.keySet()) {
                         if (!questionFieldMap.get(field).equals("")) {
                             insertStmt.append(", ").append(field);
@@ -507,11 +509,13 @@ public class DataBase {
                         DB.update(insertStmt + intoStmt.toString());
                     } catch (Exception e) {
                         System.out.print("Error occurred while UPDATE Operation: " + e);
+                        throw e;
                     }
                 }
             }
         } catch (Exception e) {
             System.out.println("Unable to execute QUESTION query: " + e);
+            throw e;
         }
     }
 
@@ -522,12 +526,12 @@ public class DataBase {
      * ==================================================================================
      */
 
-    static String[] returnDataFields = new String[] {
+    static HashSet<String> returnDataFields = new HashSet<>(Arrays.asList(
             "CREATEDDATETIME",
             "TAXYEAR",
             "FEDERAL",
             "EIC",
-            "ACCEPTEDDATA",
+            "ACCEPTEDDATE",
             "RETURNTYPE",
             "FILINGSTATUS",
             "TOTALIRSEXEMPTIONS",
@@ -566,9 +570,8 @@ public class DataBase {
             "STATEWITHOLDING",
             "STATETAXLIABILITY",
             "AAMOUNTTAXPAYERISPLANNINGTOSAVE"
-    };
+    ));
 
-    static HashMap<String, String> returnFieldMap = new HashMap<>();
 
     /**
      * Insert a return into the Return table of the database.
@@ -579,54 +582,57 @@ public class DataBase {
      * @param clientID ID of the return's client.
      */
     public static void insertReturnData(HashMap<String, String> clientData, String clientID){
-        for (String field: clientData.keySet()){
-            if (Arrays.asList(returnDataFields).contains(field)){
-                switch (field) {
-                    case "PAPERFEDERAL" -> returnFieldMap.put("PAPERFED", clientData.get(field));
-                    case "SAVINGSBONDS" -> returnFieldMap.put("POUNDSAVINGSBONDS", clientData.get(field));
-                    case "SAVINGBOND" -> returnFieldMap.put("SAVINGSBONDS", clientData.get(field));
-                    case "TOTALRESPPYMENT" -> returnFieldMap.put("TOTALRESPPAYMENT", clientData.get(field));
-                    case "CREATEDDATETIME" -> returnFieldMap.put("CREATEDDATE", clientData.get(field));
-                    default -> returnFieldMap.put(field, clientData.get(field));
+        HashMap<String, String> returnFieldMap = new HashMap<>();
+        if(clientData.containsKey("FEDERAL") && !clientData.get("FEDERAL").equals("2")) {
+            for (String field : clientData.keySet()) {
+                if (returnDataFields.contains(field)) {
+                    switch (field) {
+                        case "PAPERFEDERAL" -> returnFieldMap.put("PAPERFED", clientData.get(field));
+                        case "SAVINGSBONDS" -> returnFieldMap.put("POUNDSAVINGSBONDS", clientData.get(field));
+                        case "SAVINGBOND" -> returnFieldMap.put("SAVINGSBONDS", clientData.get(field));
+                        case "TOTALRESPPYMENT" -> returnFieldMap.put("TOTALRESPPAYMENT", clientData.get(field));
+                        case "CREATEDDATETIME" -> returnFieldMap.put("CREATEDDATE", clientData.get(field));
+                        default -> returnFieldMap.put(field, clientData.get(field));
+                    }
                 }
             }
-        }
-        try (ResultSet query = DB.executeQuery(String.format("SELECT * FROM RETURNDATA WHERE CLIENTID = '%1$s'" +
-                                                             "AND TAXYEAR = '%2$s' AND FEDERAL = '%3$s';",
-                                                      clientID,
-                                                      clientData.get("TAXYEAR"),
-                                                      clientData.get("FEDERAL")))) {
-            // If the client already exists, update the necessary fields.
-            if (query.next()) {
-                // Reset pointer of the ResultSet (somewhat redundant since there should only be one or no elements
-                // but a good habit nonetheless).
-                query.beforeFirst();
-            }else{
-                StringBuilder insertStmt = new StringBuilder("INSERT INTO RETURNDATA (CLIENTID");
-                StringBuilder intoStmt = new StringBuilder("VALUES ('" + clientID + "'");
-                if (!returnFieldMap.isEmpty()) {
-                    for (String field : returnFieldMap.keySet()) {
-                        if (!returnFieldMap.get(field).equals("")) {
-                            insertStmt.append(", ").append(field);
-                            if (isNumeric(returnFieldMap.get(field))) {
-                                intoStmt.append(", ").append(returnFieldMap.get(field));
-                            } else {
-                                intoStmt.append(", ").append("'").append(returnFieldMap.get(field)).append("'");
+            try (ResultSet query = DB.executeQuery(String.format("SELECT * FROM RETURNDATA WHERE CLIENTID = '%1$s'" +
+                            "AND TAXYEAR = '%2$s' AND FEDERAL = '%3$s';",
+                    clientID,
+                    clientData.get("TAXYEAR"),
+                    clientData.get("FEDERAL")))) {
+                // If the client already exists, update the necessary fields.
+                if (query.next()) {
+                    // Reset pointer of the ResultSet (somewhat redundant since there should only be one or no elements
+                    // but a good habit nonetheless).
+                    query.beforeFirst();
+                } else {
+                    StringBuilder insertStmt = new StringBuilder("INSERT INTO RETURNDATA (CLIENTID");
+                    StringBuilder intoStmt = new StringBuilder("VALUES ('" + clientID + "'");
+                    if (!returnFieldMap.isEmpty()) {
+                        for (String field : returnFieldMap.keySet()) {
+                            if (!returnFieldMap.get(field).equals("")) {
+                                insertStmt.append(", ").append(field);
+                                if (isNumeric(returnFieldMap.get(field))) {
+                                    intoStmt.append(", ").append(returnFieldMap.get(field));
+                                } else {
+                                    intoStmt.append(", ").append("'").append(returnFieldMap.get(field)).append("'");
+                                }
                             }
                         }
-                    }
-                    insertStmt.append(") \n");
-                    intoStmt.append((");"));
-                    try {
-                        // Execute the SQL statement.
-                        DB.update(insertStmt + intoStmt.toString());
-                    } catch (Exception e) {
-                        System.out.print("Error occurred while UPDATE Operation: " + e);
+                        insertStmt.append(") \n");
+                        intoStmt.append((");"));
+                        try {
+                            // Execute the SQL statement.
+                            DB.update(insertStmt + intoStmt.toString());
+                        } catch (Exception e) {
+                            System.out.print("Error occurred while UPDATE Operation: " + e);
+                        }
                     }
                 }
+            } catch (Exception e) {
+                System.out.println("Unable to execute RETURNDATA query: " + e);
             }
-        } catch (Exception e) {
-            System.out.println("Unable to execute RETURNDATA query: " + e);
         }
     }
 
@@ -683,181 +689,182 @@ public class DataBase {
      * @return
      * @throws SQLException
      */
-    private static ObservableList<DataObject> getDataObjectList(ResultSet rs, boolean demographic, boolean returnData, boolean client) throws SQLException{
+    private static ObservableList<DataObject> getDataObjectList(ResultSet rs, boolean demographic, boolean returnData, boolean client, boolean question, boolean taxYear) throws SQLException{
         ObservableList<DataObject> dataObjectList = FXCollections.observableArrayList();
+        ResultSetMetaData rsmd = rs.getMetaData();
         while(rs.next()){
             DataObject dataObject = new DataObject();
-            if(demographic) {
-                dataObject.setId(rs.getString("CLIENTID"));
-                dataObject.setTaxYear(rs.getInt("TAXYEAR"));
-                dataObject.setZip(rs.getString("ZIP"));
-                dataObject.setState(rs.getString("STATE"));
-            }
-            if(returnData){
-                dataObject.setFederal(rs.getBoolean("FEDERAL"));
-                dataObject.setRefund(rs.getInt("REFUND"));
-                dataObject.setEic(rs.getInt("EIC"));
-                dataObject.setChildTaxCredit(rs.getInt("CHILDTAXCREDIT"));
-            }
             if(client){
+                dataObject.setSidn(rs.getString("SIDN"));
+                dataObject.setL4SSN(rs.getString("L4SSN"));
                 dataObject.setFirstName(rs.getString("FIRSTNAME"));
                 dataObject.setLastName(rs.getString("LASTNAME"));
                 dataObject.setDoB(rs.getString("DOB"));
-                dataObject.setL4SSN(rs.getString("L4SSN"));
+                dataObject.setEfin(rs.getString("EFIN"));
             }
-            //This may not be a good way to set TAXYEAR
-            //
-            if(demographic || returnData || !client){
+            if(demographic){
                 dataObject.setTaxYear(rs.getInt("TAXYEAR"));
+                dataObject.setCity(rs.getString("CITY"));
+                dataObject.setState(rs.getString("STATE"));
+                dataObject.setZip(rs.getString("ZIP"));
+                dataObject.setPrimarySecondary60Plus(rs.getDouble("PRIMARYSECONDARY60PLUS"));
+                dataObject.setResidency(rs.getString("RESIDENCY"));
             }
+            if(returnData){
+                dataObject.setTaxYear(rs.getInt("TAXYEAR"));
+                dataObject.setFederal(rs.getBoolean("FEDERAL"));
+                dataObject.setAcceptedDate(rs.getString("ACCEPTEDDATE"));
+                dataObject.setReturnType(rs.getString("RETURNTYPE"));
+                dataObject.setFilingStatus(rs.getString("FILINGSTATUS"));
+                dataObject.setTotalIrsExemptions(rs.getDouble("TOTALIRSEXEMPTIONS"));
+                dataObject.setRefund(rs.getDouble("REFUND"));
+                dataObject.setPaperState(rs.getBoolean("PAPERSTATE"));
+                dataObject.setPaperFed(rs.getBoolean("PAPERFED"));
+                dataObject.setRequestingDd(rs.getBoolean("REQUESTINGDD"));
+                dataObject.setAgi(rs.getDouble("AGI"));
+                dataObject.setCreatedDate(rs.getString("CREATEDDATE"));
+                dataObject.setAddctc(rs.getDouble("ADDCTC"));
+                dataObject.setPoundSavingsBonds(rs.getString("POUNDSAVINGSBONDS"));
+                dataObject.setSavingsBonds(rs.getString("SAVINGSBONDS"));
+                dataObject.setEic(rs.getDouble("EIC"));
+                dataObject.setChildTaxCredit(rs.getDouble("CHILDTAXCREDIT"));
+                dataObject.setEducationTaxCredit(rs.getDouble("EDUCATIONTAXCREDIT"));
+                dataObject.setElderlyCredit(rs.getDouble("ELDERLYCREDIT"));
+                dataObject.setTotalRespPayment(rs.getDouble("TOTALRESPPAYMENT"));
+                dataObject.setTotalAdvptcRepayment(rs.getDouble("TOTALADVPTCREPAYMENT"));
+                dataObject.setAverageAdvptcPayment(rs.getDouble("AVERAGEADVPTCPAYMENT"));
+                dataObject.setTotalPtc(rs.getDouble("TOTALPTC"));
+                dataObject.setBalanceDue(rs.getDouble("BALANCEDUE"));
+                dataObject.setItin(rs.getBoolean("ITIN"));
+                dataObject.setExemption7(rs.getBoolean("EXEMPTION7"));
+                dataObject.setFullYearCoverage(rs.getBoolean("FULLYEARCOVERAGE"));
+                dataObject.setForm8888(rs.getBoolean("FORM8888"));
+                dataObject.setScheduleA(rs.getBoolean("SCHEDULEA"));
+                dataObject.setScheduleB(rs.getBoolean("SCHEDULEB"));
+                dataObject.setScheduleC(rs.getBoolean("SCHEDULEC"));
+                dataObject.setScheduleCEz(rs.getBoolean("SCHEDULECEZ"));
+                dataObject.setScheduleD(rs.getBoolean("SCHEDULED"));
+                dataObject.setScheduleE(rs.getBoolean("SCHEDULEE"));
+                dataObject.setScheduleF(rs.getBoolean("SCHEDULEF"));
+                dataObject.setScheduleH(rs.getBoolean("SCHEDULEH"));
+                dataObject.setScheduleR(rs.getBoolean("SCHEDULER"));
+                dataObject.setScheduleSetP(rs.getBoolean("SCHEDULESETP"));
+                dataObject.setScheduleSesP(rs.getBoolean("SCHEDULESESP"));
+                dataObject.setAgencyId(rs.getString("AGENCYID"));
+                dataObject.setStateWithholding(rs.getDouble("STATEWITHHOLDING"));
+                dataObject.setStateTaxLiability(rs.getDouble("STATETAXLIABILITY"));
+                dataObject.setAAmountTaxpayerIsPlanningToSave(rs.getDouble("AAMOUNTTAXPAYERISPLANNINGTOSAVE"));
+            }
+            if(question){
+                dataObject.setTaxYear(rs.getInt("TAXYEAR"));
+                dataObject.setConsentToDiscloseTaxReturn(rs.getBoolean("CONSENTTODISCLOSETAXRETURN"));
+                dataObject.setConsentToDiscloseTaxpayerD(rs.getBoolean("CONSENTTODISCLOSETAXPAYERD"));
+                dataObject.setConsentToUseTaxpayerData(rs.getBoolean("CONSENTTOUSETAXPAYERDATA"));
+                dataObject.setConsentToDiscloseTaxReturn1(rs.getBoolean("CONSENTTODISCLOSETAXRETURN1"));
+                dataObject.setConsentToDiscloseTaxReturn2(rs.getBoolean("CONSENTTODISCLOSETAXRETURN2"));
+                dataObject.setConsentToDiscloseTaxReturn3(rs.getBoolean("CONSENTTODISCLOSETAXRETURN3"));
+                dataObject.setConsentToDiscloseTaxReturn4(rs.getBoolean("CONSENTTODISCLOSETAXRETURN4"));
+                dataObject.setQuestions1(rs.getString("QUESTIONS1"));
+                dataObject.setQuestions2(rs.getString("QUESTIONS2"));
+                dataObject.setQuestions3(rs.getString("QUESTIONS3"));
+                dataObject.setQuestions4(rs.getString("QUESTIONS4"));
+                dataObject.setQuestions5(rs.getString("QUESTIONS5"));
+                dataObject.setQuestions6(rs.getString("QUESTIONS6"));
+                dataObject.setQuestions7(rs.getString("QUESTIONS7"));
+                dataObject.setQuestions8(rs.getString("QUESTIONS8"));
+                dataObject.setQuestions9(rs.getString("QUESTIONS9"));
+                dataObject.setQuestionA(rs.getString("QUESTIONA"));
+                dataObject.setQuestionB(rs.getString("QUESTIONB"));
+                dataObject.setQuestionC(rs.getString("QUESTIONC"));
+                dataObject.setQuestionD(rs.getString("QUESTIOND"));
+                dataObject.setQuestionE(rs.getString("QUESTIONE"));
+                dataObject.setQuestionF(rs.getString("QUESTIONF"));
+                dataObject.setQuestionG(rs.getString("QUESTIONG"));
+                dataObject.setQuestionH(rs.getString("QUESTIONH"));
+                dataObject.setQuestionI(rs.getString("QUESTIONI"));
+                dataObject.setQuestionJ(rs.getString("QUESTIONJ"));
+                dataObject.setQuestionK(rs.getString("QUESTIONK"));
+                dataObject.setPersons5AndUnder(rs.getDouble("PERSONS5ANDUNDER"));
+                dataObject.setPersonsAge6To18(rs.getDouble("PERSONSAGE6TO18"));
+                dataObject.setPersonsAge65Plus(rs.getDouble("PERSONSAGE65PLUS"));
+            }
+            if(taxYear){
+                for(int i = 1; i <= rsmd.getColumnCount(); i++){
+                    if(rsmd.getColumnLabel(i).equals("TAXYEAR") && rs.getInt(i) > 0){
+                        dataObject.setTaxYear(rs.getInt(i));
+                        break;
+                    }
+                }
+            }
+
             dataObjectList.add(dataObject);
         }
         return dataObjectList;
 
     }
 
-    /**
-     * Searches for a Client by ID.
-     * @param ID String, ID of the Client.
-     * @return Client with corresponding ID.
-     * @throws SQLException Unable to retrieve data, loss of connection, or other errors.
-     * @throws ClassNotFoundException Client class unable to be found.
-     */
-    public static Client searchClient(String ID) throws SQLException, ClassNotFoundException{
-        String selectStmt = "SELECT * From CLIENT WHERE ID = " + ID;
 
+    /**
+     * searches the database for data based on the given conditions
+     * @param condition the condition for the SQL statement
+     * @param included the included tables
+     * @return the results of the search in the form of an ObservableList
+     */
+    public static ObservableList<DataObject> search(String condition, ArrayList<String>included) throws SQLException{
+        ensureOrder(included);
+        String selectStmt = "SELECT * FROM " + included.get(0) + " ";
+        ArrayList<String>prevTabs = new ArrayList<>();
+        for(int i = 1; i < included.size(); i++){
+            selectStmt += "FULL JOIN " + included.get(i) + " ON ";
+            if(included.get(i).equals("CLIENT")) {
+                selectStmt += included.get(i - 1) + "." + "CLIENTID = CLIENT.ID ";
+                for(String s : prevTabs){
+                    selectStmt += " OR " + s + "." + "CLIENTID = CLIENT.ID ";
+                }
+            }else if(included.get(i).equals("TAXYEAR") && included.get(i - 1).equals("CLIENT")){
+                selectStmt += included.get(i-2)+"."+"TAXYEAR = TAXYEAR.TAXYEAR ";
+                for(String s : prevTabs){
+                    selectStmt += " OR " + s +"."+"TAXYEAR = TAXYEAR.TAXYEAR ";
+                }
+            }else if(included.get(i).equals("TAXYEAR")){
+                selectStmt += included.get(i-1)+"."+"TAXYEAR = TAXYEAR.TAXYEAR ";
+                for(String s : prevTabs){
+                    selectStmt += " OR " + s +"."+"TAXYEAR = TAXYEAR.TAXYEAR ";
+                }
+            }else{
+                selectStmt += "(" + included.get(i - 1) + ".CLIENTID = " + included.get(i) + ".CLIENTID AND " + included.get(i - 1) + ".TAXYEAR = " + included.get(i) + ".TAXYEAR) ";
+                for(String s : prevTabs) {
+                    selectStmt += " OR (" + s + ".CLIENTID = " + included.get(i) + ".CLIENTID AND " + s + ".TAXYEAR = " + included.get(i) + ".TAXYEAR) ";
+                }
+                prevTabs.add(included.get(i-1));
+            }
+        }
+        selectStmt += condition + ";";
+        System.out.println(selectStmt);
         try{
             ResultSet rs = DB.executeQuery(selectStmt);
-            return getClientFromResultSet(rs);
-        }catch(Exception e){
-            System.out.println("Error while searching for " + ID + " : " + e);
+            Set<String> inc = new HashSet<>(included);
+            ObservableList<DataObject> dataList = getDataObjectList(rs, inc.contains("DEMOGRAPHIC"), inc.contains("RETURNDATA"), inc.contains("CLIENT"), inc.contains("QUESTION"), inc.contains("TAXYEAR"));
+            return dataList;
+        }catch (SQLException e){
+            System.out.println("SQL select operation has failed:" + e);
             throw e;
         }
-    }
-
-    private static Client getClientFromResultSet(ResultSet rs) throws SQLException{
-        Client client = null;
-        if(rs.next()){
-            client = new Client();
-            client.setId(rs.getString("ID"));
-            client.setFirstName(rs.getString("FIRSTNAME"));
-            client.setLastName(rs.getString("LASTNAME"));
-            client.setDoB(rs.getString("DOB"));
-            client.setL4SSN(rs.getString("L4SSN"));
-        }
-        return client;
     }
 
     /**
-     * runs an SQL query selecting data from the Client table with a given condition
-     * @param condition the condition of the WHERE clause of the SQL statement
-     * @return the results of the SQL query as an ObservableList
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * makes sure that the list of included tables are in the necessary order
+     * @param included the list of included tables
      */
-    public static ObservableList<DataObject> searchClients(String condition) throws SQLException, ClassNotFoundException {
-        String selectStmt = "SELECT * FROM CLIENT" + condition;
-        System.out.println(selectStmt);
-        try {
-            ResultSet rsClients = DB.executeQuery(selectStmt);
-            ObservableList<DataObject> clientList = getDataObjectList(rsClients, false, false, true);
-            return clientList;
-        } catch (SQLException e) {
-            System.out.println("SQL select operation has failed:" + e);
-            throw e;
+    private static void ensureOrder(ArrayList<String> included){
+        for(int i = 0; i < included.size(); i++){
+            if(included.get(i).equals("TAXYEAR") && i != included.size() - 1){
+                included.set(i, included.get(included.size()-1));
+                included.set(included.size()-1, "TAXYEAR");
+            }else if(included.get(i).equals("CLIENT") && i != included.size()-2 && included.size() > 1){
+                included.set(i, included.get(included.size()-2));
+                included.set(included.size()-1, "CLIENT");
+            }
         }
     }
-
-    public static ObservableList<DataObject> searchDemographics(String condition) throws SQLException, ClassNotFoundException{
-        String selectStmt = "SELECT * FROM DEMOGRAPHIC " + condition;
-        System.out.println(selectStmt);
-        try{
-            ResultSet rsDemographics = DB.executeQuery(selectStmt);
-            ObservableList<DataObject> demographicList = getDataObjectList(rsDemographics, true, false, false);
-            return demographicList;
-        }catch(SQLException e){
-            System.out.println("SQL select operation has failed:" + e);
-            throw e;
-        }
-    }
-
-    public static ObservableList<DataObject> searchReturnData(String condition) throws SQLException, ClassNotFoundException{
-        String selectStmt = "SELECT * FROM RETURNDATA " + condition;
-        System.out.println(selectStmt);
-        try{
-            ResultSet rsDemographics = DB.executeQuery(selectStmt);
-            ObservableList<DataObject> demographicList = getDataObjectList(rsDemographics, false, true, false);
-            return demographicList;
-        }catch(SQLException e){
-            System.out.println("SQL select operation has failed:" + e);
-            throw e;
-        }
-    }
-
-    public static ObservableList<DataObject> searchDemographicsAndReturnData(String condition) throws SQLException, ClassNotFoundException{
-        String selectStmt = "SELECT * FROM DEMOGRAPHIC INNER JOIN RETURNDATA ON DEMOGRAPHIC.TAXYEAR = RETURNDATA.TAXYEAR AND DEMOGRAPHIC.CLIENTID = RETURNDATA.CLIENTID" + condition;
-        System.out.println(selectStmt);
-        try{
-            ResultSet rsDemographics = DB.executeQuery(selectStmt);
-            ObservableList<DataObject> demographicList = getDataObjectList(rsDemographics, true, true, false);
-            return demographicList;
-        }catch(SQLException e){
-            System.out.println("SQL select operation has failed:" + e);
-            throw e;
-        }
-    }
-
-    public static ObservableList<DataObject> searchDemographicsAndClients(String condition) throws SQLException, ClassNotFoundException{
-        String selectStmt = "SELECT * FROM DEMOGRAPHIC INNER JOIN CLIENT ON DEMOGRAPHIC.CLIENTID = ID" + condition;
-        System.out.println(selectStmt);
-        try{
-            ResultSet rsDemographics = DB.executeQuery(selectStmt);
-            ObservableList<DataObject> demographicList = getDataObjectList(rsDemographics, true, false, true);
-            return demographicList;
-        }catch(SQLException e){
-            System.out.println("SQL select operation has failed:" + e);
-            throw e;
-        }
-    }
-
-    public static ObservableList<DataObject> searchReturnDataAndClients(String condition) throws SQLException, ClassNotFoundException{
-        String selectStmt = "SELECT * FROM RETURNDATA INNER JOIN CLIENT ON RETURNDATA.CLIENTID = ID" + condition;
-        System.out.println(selectStmt);
-        try{
-            ResultSet rsDemographics = DB.executeQuery(selectStmt);
-            ObservableList<DataObject> returnDataClientList = getDataObjectList(rsDemographics, false, true, true);
-            return returnDataClientList;
-        }catch(SQLException e){
-            System.out.println("SQL select operation has failed:" + e);
-            throw e;
-        }
-    }
-
-    public static ObservableList<DataObject> searchDemographicsAndReturnDataAndClients(String condition) throws SQLException, ClassNotFoundException{
-        String selectStmt = "SELECT * FROM DEMOGRAPHIC INNER JOIN RETURNDATA ON DEMOGRAPHIC.TAXYEAR = RETURNDATA.TAXYEAR AND DEMOGRAPHIC.CLIENTID = RETURNDATA.CLIENTID INNER JOIN CLIENT ON DEMOGRAPHIC.CLIENTID = ID" + condition;
-        System.out.println(selectStmt);
-        try{
-            ResultSet rsDemographics = DB.executeQuery(selectStmt);
-            ObservableList<DataObject> demographicList = getDataObjectList(rsDemographics, true, true, true);
-            return demographicList;
-        }catch(SQLException e){
-            System.out.println("SQL select operation has failed:" + e);
-            throw e;
-        }
-    }
-
-    public static ObservableList<DataObject> searchTaxYears(String condition) throws SQLException, ClassNotFoundException{
-        String selectStmt = "SELECT * FROM TAXYEAR" + condition;
-        System.out.println(selectStmt);
-        try {
-            ResultSet rsClients = DB.executeQuery(selectStmt);
-            ObservableList<DataObject> taxYearList = getDataObjectList(rsClients, false, false, false);
-            return taxYearList;
-        } catch (SQLException e) {
-            System.out.println("SQL select operation has failed:" + e);
-            throw e;
-        }
-    }
-
-
 }
