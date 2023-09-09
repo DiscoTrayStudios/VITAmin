@@ -881,7 +881,17 @@ public class HelloController {
             }
             fw.write(data);
             fw.close();
-        }catch(IOException e){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successfully Downloaded to Downloads Folder");
+            alert.initOwner(resultsTable.getScene().getWindow());
+            alert.showAndWait();
+        }catch(StringIndexOutOfBoundsException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "There's Not Data Here! Try Another Filter!");
+            alert.initOwner(resultsTable.getScene().getWindow());
+            alert.showAndWait();
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Something Went Wrong With Export! Please Try Again!");
+            alert.initOwner(resultsTable.getScene().getWindow());
+            alert.showAndWait();
             System.out.println("error!");
             e.printStackTrace();
         }
